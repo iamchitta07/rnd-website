@@ -5,18 +5,18 @@ import { DropdownMenuBasic } from "./DropDownMenu";
 const Header = () => {
   return (
     <header className="bg-black">
-      <div className="w-full px-4 sm:px-12 lg:px-30">
+      <div className="w-full px-5 lg:px-20">
         <div className="flex h-12 lg:h-16 items-center justify-between">
           <div className="flex-1 md:flex md:items-center md:gap-12">
             <Link className="block text-teal-600" href="/">
               <span className="sr-only">Home</span>
-              <Image src="/logo.png" width={26} height={51} alt="logo" />
+              <Image src="/logos/logo.svg" width={26} height={51} alt="logo" />
             </Link>
           </div>
 
           <div className="md:flex md:items-center md:gap-12">
-            <nav aria-label="Global" className="hidden lg:block">
-              <ul className="flex items-center gap-10 text-2xl">
+            <nav aria-label="Global" className="hidden md:block">
+              <ul className="flex items-center gap-10 text-xl lg:text-2xl">
                 <li>
                   <Link className="text-zinc-500 transition hover:text-white/75" href="/">
                     {" "}
@@ -60,7 +60,7 @@ const Header = () => {
                 </li>
               </ul>
             </nav>
-            <div className="block lg:hidden">
+            <div className="block md:hidden">
               <DropdownMenuBasic />
             </div>
           </div>
