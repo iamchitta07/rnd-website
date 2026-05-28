@@ -1,3 +1,4 @@
+import AboutUs from "./_components/aboutUs/AboutUs";
 import Carousel from "./_components/carousel/centerCarousel/Carousel";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         ]}
         interval={5000}
       />
+      <AboutUs />
     </div>
   );
 }
