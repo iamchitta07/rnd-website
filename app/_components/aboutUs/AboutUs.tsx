@@ -1,6 +1,6 @@
 const AboutUs = () => {
   return (
-    <div className="py-30 px-5 lg:px-20">
+    <div className="pt-30 pb-30 md:pb-0 px-5 lg:px-20">
       <h1 className="text-4xl md:text-6xl text-center">About Us</h1>
       <p className="text-center mt-5 text-md ">
         Write from the begining of the dark age alot of ground breaking discoveries were made by

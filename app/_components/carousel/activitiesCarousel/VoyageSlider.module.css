@@ -1,0 +1,398 @@
+/*
+  VoyageSlider.module.css
+
+  ⚠️  Add to globals.css:
+  @import url("https://api.fontshare.com/v2/css?f[]=archivo@100,200,300,400,500,600,700,800,900&f[]=clash-display@200,300,400,500,600,700&display=swap");
+*/
+
+/* ─────────────────────────────────────────────────────────────
+   Root container  — CSS custom properties defined here so ALL
+   descendants (including position:fixed .slideBg) can inherit.
+──────────────────────────────────────────────────────────────*/
+.container {
+  /* ── tokens (override per breakpoint below) ── */
+  --slide-width: min(25vw, 300px);
+  --slide-transition-duration: 800ms;
+  --slide-transition-easing: ease;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Slider shell
+──────────────────────────────────────────────────────────────*/
+.slider {
+  /*
+    width  = 3 × slide-width  (room for current + two side slides)
+    height = 3 × slide-width  ≡ 2 × slide-height  (aspect 2:3 → h = w×1.5)
+  */
+  width: calc(3 * var(--slide-width));
+  height: calc(3 * var(--slide-width));
+  display: flex;
+  align-items: center;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Nav buttons
+──────────────────────────────────────────────────────────────*/
+.sliderBtn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  opacity: 0.7;
+  z-index: 999;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 8px;
+  transition: opacity 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  /* touch target ≥ 44 px */
+  min-width: 44px;
+  min-height: 44px;
+}
+.sliderBtn:hover {
+  opacity: 1;
+}
+.sliderBtn:focus {
+  outline: none;
+}
+
+/* SVG size controlled by CSS so breakpoints can shrink it */
+.sliderBtn svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Slides wrapper — stacks every slide into one grid cell
+──────────────────────────────────────────────────────────────*/
+.slidesWrapper {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  /* clip peekaboo slides on mobile without hiding the buttons */
+  overflow: hidden;
+}
+.slidesWrapper > * {
+  grid-area: 1 / -1;
+}
+
+.slides,
+.slidesInfos {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+.slides > *,
+.slidesInfos > * {
+  grid-area: 1 / -1;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Individual slide
+──────────────────────────────────────────────────────────────*/
+.slide {
+  --slide-tx: 0px;
+  --slide-ty: 0px;
+  --slide-tz: 0px;
+  --slide-rotY: 0deg;
+  --slide-scale: 1;
+
+  width: var(--slide-width);
+  height: auto;
+  aspect-ratio: 2 / 3;
+  user-select: none;
+
+  transform: perspective(1000px)
+    translate3d(var(--slide-tx), var(--slide-ty), var(--slide-tz))
+    rotateY(var(--slide-rotY)) scale(var(--slide-scale));
+
+  /* Transition both transform AND opacity (needed for hidden→visible) */
+  transition:
+    transform var(--slide-transition-duration) var(--slide-transition-easing),
+    opacity var(--slide-transition-duration) var(--slide-transition-easing);
+}
+
+.slide[data-current] {
+  --slide-scale: 1.2;
+  pointer-events: auto;
+}
+.slide[data-next] {
+  --slide-tx: calc(var(--slide-width) * 1.07);
+  --slide-rotY: -45deg;
+}
+.slide[data-previous] {
+  --slide-tx: calc(-1 * var(--slide-width) * 1.07);
+  --slide-rotY: 45deg;
+}
+.slide:not([data-current]) {
+  pointer-events: none;
+}
+
+/* Hidden slides (total > 3): invisible at center, no pointer events */
+.slide:not([data-current]):not([data-next]):not([data-previous]) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Image brightness per position */
+.slide[data-current] .slideImage {
+  filter: brightness(0.8);
+}
+.slide:not([data-current]) .slideImage {
+  filter: brightness(0.5);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Slide inner — 3D tilt target (--rotX/Y written by RAF)
+──────────────────────────────────────────────────────────────*/
+.slideInner {
+  --rotX: 0deg;
+  --rotY: 0deg;
+  --bgPosX: 0%;
+  --bgPosY: 0%;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotX)) rotateY(var(--rotY));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Slide image
+──────────────────────────────────────────────────────────────*/
+.slideImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slideImage {
+  width: 100% !important; /* override next/image inline width */
+  height: 100% !important; /* override next/image inline height */
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) scale(1.25)
+    translate3d(var(--bgPosX), var(--bgPosY), 0);
+  transition: filter var(--slide-transition-duration)
+    var(--slide-transition-easing);
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Slide info overlay
+──────────────────────────────────────────────────────────────*/
+.slideInfo {
+  position: relative;
+  width: var(--slide-width);
+  height: 100%;
+  aspect-ratio: 2 / 3;
+  user-select: none;
+  perspective: 800px;
+  z-index: 100;
+}
+
+/* Hidden slide info */
+.slideInfo:not([data-current]):not([data-next]):not([data-previous]) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Text reveal / hide per position */
+.slideInfo[data-current] .slideInfoText span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 250ms;
+}
+.slideInfo:not([data-current]) .slideInfoText span {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+  transition-delay: 0ms;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Slide info inner — tilt target
+──────────────────────────────────────────────────────────────*/
+.slideInfoInner {
+  --rotX: 0deg;
+  --rotY: 0deg;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotX)) rotateY(var(--rotY));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Text wrapper — offset left + translateZ for depth
+──────────────────────────────────────────────────────────────*/
+.slideInfoTextWrapper {
+  position: absolute;
+  height: fit-content;
+  left: -15%;
+  bottom: 15%;
+  transform: translateZ(45px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Text items
+──────────────────────────────────────────────────────────────*/
+.slideInfoText {
+  font-family: "Clash Display", sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+.slideInfoText span {
+  display: block;
+  white-space: nowrap;
+  transition-property: opacity, transform;
+  transition-duration: var(--slide-transition-duration, 800ms);
+  transition-timing-function: var(--slide-transition-easing, ease);
+}
+
+.slideInfoText[data-title],
+.slideInfoText[data-subtitle] {
+  font-size: min(3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: 0.2vw;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.slideInfoText[data-subtitle] {
+  margin-left: 2vw;
+  font-size: min(2.2vw, 1.8rem);
+  font-weight: 600;
+}
+
+.slideInfoText[data-description] {
+  margin-left: 1vw;
+  font-size: min(1.5vw, 0.95rem);
+  font-family: "Archivo", sans-serif;
+  font-weight: 300;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Loader text
+──────────────────────────────────────────────────────────────*/
+.loaderText {
+  font-family: "Clash Display", sans-serif;
+  font-size: clamp(2rem, 2vw, 5rem);
+  font-weight: 800;
+  color: #fff;
+}
+
+/* ═════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   Strategy:
+     Desktop (>1024px) → original 3-up layout, 300px cap
+     Tablet  (641–1024px) → shrink slide-width, keep 3-up
+     Mobile  (≤640px) → large current slide, peekaboo prev/next,
+                         full-width slider, swipe to navigate
+═════════════════════════════════════════════════════════════ */
+
+/* ── Tablet ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .container {
+    --slide-width: min(36vw, 240px);
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .container {
+    --slide-width: 58vw;
+  }
+
+  /*
+    Full-width slider on mobile.
+    Height = slide natural height (w × 1.5) × 1.2 scale ≈ w × 1.8
+    58vw × 1.8 ≈ 104vw — roughly one screen height, feels natural.
+  */
+  .slider {
+    width: 100%;
+    height: calc(var(--slide-width) * 1.85);
+  }
+
+  /*
+    Reduce the lateral offset for prev/next so a sliver (~18vw)
+    peeks in from each edge — creating a visual "there's more" cue.
+    Reduce rotY so the angled card doesn't feel too dramatic at small sizes.
+  */
+  .slide[data-next] {
+    --slide-tx: calc(var(--slide-width) * 0.88);
+    --slide-rotY: -22deg;
+  }
+  .slide[data-previous] {
+    --slide-tx: calc(-1 * var(--slide-width) * 0.88);
+    --slide-rotY: 22deg;
+  }
+
+  /* Text wrapper: pull it back in so it doesn't escape the slide */
+  .slideInfoTextWrapper {
+    left: -5%;
+    bottom: 10%;
+  }
+
+  /*
+    Responsive typography:
+    clamp(min, preferred-vw, max) replaces min(Nvw, Nrem)
+    so text scales smoothly across the full mobile range.
+  */
+  .slideInfoText[data-title],
+  .slideInfoText[data-subtitle] {
+    font-size: clamp(1.2rem, 8vw, 2.4rem);
+    letter-spacing: 0.5vw;
+  }
+
+  .slideInfoText[data-subtitle] {
+    margin-left: 3vw;
+    font-size: clamp(0.9rem, 6vw, 1.8rem);
+  }
+
+  .slideInfoText[data-description] {
+    margin-left: 2vw;
+    font-size: clamp(0.6rem, 3.5vw, 0.95rem);
+  }
+
+  /* Smaller arrows on mobile (still ≥44px touch target via padding) */
+  .sliderBtn svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* ── Very small phones (≤380px) ──────────────────────────── */
+@media (max-width: 380px) {
+  .container {
+    --slide-width: 64vw;
+  }
+
+  .sliderBtn {
+    padding: 4px;
+    min-width: 36px;
+  }
+
+  .sliderBtn svg {
+    width: 22px;
+    height: 22px;
+  }
+}
