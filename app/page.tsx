@@ -1,6 +1,7 @@
 import AboutUs from "./_components/aboutUs/AboutUs";
 import VoyageSlider from "./_components/carousel/activitiesCarousel/Carousel";
 import Carousel from "./_components/carousel/centerCarousel/Carousel";
+import { RecentPosts } from "./_components/recentPosts/RecentPosts";
 
 export default function Home() {
   return (
@@ -15,6 +16,9 @@ export default function Home() {
       />
       <AboutUs />
       <VoyageSlider />
+      <div className="flex w-full justify-center">
+        <RecentPosts />
+      </div>
     </div>
   );
 }

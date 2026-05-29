@@ -225,105 +225,108 @@ export default function VoyageSlider() {
 
   // ── Render ────────────────────────────────────────────────
   return (
-    <div className={styles.container} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-      <div className={styles.slider}>
-        {/* Prev */}
-        <button
-          className={styles.sliderBtn}
-          onClick={() => navigate(-1)}
-          aria-label="Previous slide"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+    <>
+      <h1 className="text-4xl md:text-6xl text-center mb-5 md:mt-20 md:-mb-10">Our Activities</h1>
+      <div className={styles.container} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+        <div className={styles.slider}>
+          {/* Prev */}
+          <button
+            className={styles.sliderBtn}
+            onClick={() => navigate(-1)}
+            aria-label="Previous slide"
           >
-            <path d="m15 18-6-6 6-6" />
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
 
-        <div className={styles.slidesWrapper}>
-          {/* Slide images */}
-          <div className={styles.slides}>
-            {SLIDES.map((slide, i) => (
-              <div
-                key={i}
-                ref={(el) => {
-                  slideRefs.current[i] = el;
-                }}
-                className={styles.slide}
-                style={{ zIndex: zIndices[i] }}
-                {...dataAttrs(getPos(i))}
-              >
+          <div className={styles.slidesWrapper}>
+            {/* Slide images */}
+            <div className={styles.slides}>
+              {SLIDES.map((slide, i) => (
                 <div
+                  key={i}
                   ref={(el) => {
-                    innerRefs.current[i] = el;
+                    slideRefs.current[i] = el;
                   }}
-                  className={styles.slideInner}
+                  className={styles.slide}
+                  style={{ zIndex: zIndices[i] }}
+                  {...dataAttrs(getPos(i))}
                 >
-                  <div className={styles.slideImageWrapper}>
-                    {/* FIX: width/height match 2:3 aspect ratio; sizes hint for next/image optimisation */}
-                    <Image
-                      width={300}
-                      height={450}
-                      className={styles.slideImage}
-                      src={slide.image}
-                      alt={slide.title}
-                      draggable={false}
-                      sizes="(max-width: 640px) 65vw, (max-width: 1024px) 40vw, 30vw"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Slide text infos */}
-          <div className={styles.slidesInfos}>
-            {SLIDES.map((slide, i) => (
-              <div key={i} className={styles.slideInfo} {...dataAttrs(getPos(i))}>
-                <div
-                  ref={(el) => {
-                    infoInnerRefs.current[i] = el;
-                  }}
-                  className={styles.slideInfoInner}
-                >
-                  <div className={styles.slideInfoTextWrapper}>
-                    <div data-title="" className={styles.slideInfoText}>
-                      <span>{slide.title}</span>
-                    </div>
-                    <div data-subtitle="" className={styles.slideInfoText}>
-                      <span>{slide.subtitle}</span>
-                    </div>
-                    <div data-description="" className={styles.slideInfoText}>
-                      <span>{slide.description}</span>
+                  <div
+                    ref={(el) => {
+                      innerRefs.current[i] = el;
+                    }}
+                    className={styles.slideInner}
+                  >
+                    <div className={styles.slideImageWrapper}>
+                      {/* FIX: width/height match 2:3 aspect ratio; sizes hint for next/image optimisation */}
+                      <Image
+                        width={300}
+                        height={450}
+                        className={styles.slideImage}
+                        src={slide.image}
+                        alt={slide.title}
+                        draggable={false}
+                        sizes="(max-width: 640px) 65vw, (max-width: 1024px) 40vw, 30vw"
+                      />
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Slide text infos */}
+            <div className={styles.slidesInfos}>
+              {SLIDES.map((slide, i) => (
+                <div key={i} className={styles.slideInfo} {...dataAttrs(getPos(i))}>
+                  <div
+                    ref={(el) => {
+                      infoInnerRefs.current[i] = el;
+                    }}
+                    className={styles.slideInfoInner}
+                  >
+                    <div className={styles.slideInfoTextWrapper}>
+                      <div data-title="" className={styles.slideInfoText}>
+                        <span>{slide.title}</span>
+                      </div>
+                      <div data-subtitle="" className={styles.slideInfoText}>
+                        <span>{slide.subtitle}</span>
+                      </div>
+                      <div data-description="" className={styles.slideInfoText}>
+                        <span>{slide.description}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Next */}
+          <button className={styles.sliderBtn} onClick={() => navigate(1)} aria-label="Next slide">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
         </div>
-
-        {/* Next */}
-        <button className={styles.sliderBtn} onClick={() => navigate(1)} aria-label="Next slide">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="m9 18 6-6-6-6" />
-          </svg>
-        </button>
       </div>
-    </div>
+    </>
   );
 }
