@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./_components/header/Header";
 import Footer from "./_components/footer/Footer";
 import BackGroundGrid from "./_components/background/BackGround";
 
@@ -36,7 +35,6 @@ export default function RootLayout({
       </head>
       <body>
         <main className="relative overflow-hidden min-h-screen flex flex-col">
-          <Header />
           <BackGroundGrid />
           <div className="flex-1">{children}</div>
           <Footer />

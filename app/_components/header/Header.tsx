@@ -4,8 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { DropdownMenuBasic } from "./DropDownMenu";
 import { useState, useEffect } from "react";
+import type { NavLink } from "@/types";
+import { Logout } from "./Logout";
 
-const Header = () => {
+const Header = ({ LINKS }: { LINKS: NavLink[] }) => {
   const [bgOpacity, setBgOpacity] = useState(0);
 
   useEffect(() => {
@@ -32,52 +34,23 @@ const Header = () => {
 
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Global" className="hidden md:block">
-              <ul className="flex items-center gap-10 text-xl lg:text-2xl">
-                <li>
-                  <Link className="text-zinc-300 transition hover:text-white" href="/">
-                    {" "}
-                    Home{" "}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="text-zinc-300 transition hover:text-white" href="/events">
-                    {" "}
-                    Events{" "}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="text-zinc-300 transition hover:text-white" href="/blogs">
-                    {" "}
-                    Blogs{" "}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="text-zinc-300 transition hover:text-white" href="/projects">
-                    {" "}
-                    Our Projects{" "}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="text-zinc-300 transition hover:text-white" href="/team">
-                    {" "}
-                    Our Team{" "}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="text-zinc-300 transition hover:text-white" href="/join-us">
-                    {" "}
-                    Join Us{" "}
-                  </Link>
-                </li>
+              <ul className="flex items-center gap-5 lg:gap-10 text-md lg:text-2xl">
+                {LINKS.map((val) => (
+                  <li key={val.title}>
+                    {val.title !== "logout" ? (
+                      <Link className="text-zinc-300 transition hover:text-white" href={val.link}>
+                        {" "}
+                        {val.label}{" "}
+                      </Link>
+                    ) : (
+                      <Logout />
+                    )}
+                  </li>
+                ))}
               </ul>
             </nav>
             <div className="block md:hidden">
-              <DropdownMenuBasic />
+              <DropdownMenuBasic LINKS={LINKS} />
             </div>
           </div>
         </div>

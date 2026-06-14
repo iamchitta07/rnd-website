@@ -6,9 +6,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { NavLink } from "@/types";
 import Link from "next/link";
+import { Logout } from "./Logout";
 
-export function DropdownMenuBasic() {
+export function DropdownMenuBasic({ LINKS }: { LINKS: NavLink[] }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="border border-white rounded-full py-1" asChild>
@@ -27,26 +29,17 @@ export function DropdownMenuBasic() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-gray-100">
         <DropdownMenuGroup>
-          <Link href="/">
-            <DropdownMenuItem className="active:bg-gray-300 active:text-zinc-700">
-              Home
-            </DropdownMenuItem>
-          </Link>
-          <Link href="/events">
-            <DropdownMenuItem>Events</DropdownMenuItem>
-          </Link>
-          <Link href="/blogs">
-            <DropdownMenuItem>Blogs</DropdownMenuItem>
-          </Link>
-          <Link href="/projects">
-            <DropdownMenuItem>Our Projects</DropdownMenuItem>
-          </Link>
-          <Link href="/team">
-            <DropdownMenuItem>Our Team</DropdownMenuItem>
-          </Link>
-          <Link href="/join-us">
-            <DropdownMenuItem>Join Us</DropdownMenuItem>
-          </Link>
+          {LINKS.map((val) => {
+            return val.title !== "logout" ? (
+              <Link href={val.link} key={val.title}>
+                <DropdownMenuItem className="active:bg-gray-300 active:text-zinc-700">
+                  {val.label}
+                </DropdownMenuItem>
+              </Link>
+            ) : (
+              <Logout key="logout" />
+            );
+          })}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -63,12 +63,93 @@ export const navLinks: NavLink[] = [
   },
   {
     title: "our team",
-    label: "Out Team",
+    label: "Our Team",
     link: "/team",
   },
   {
     title: "give your feedback",
     label: "Feedback",
     link: "/join-us",
+  },
+];
+
+export const userHeaderLinks: NavLink[] = [
+  {
+    title: "home",
+    label: "Home",
+    link: "/",
+  },
+  {
+    title: "our events",
+    label: "Events",
+    link: "/events",
+  },
+  {
+    title: "our blogs",
+    label: "Blog",
+    link: "/blogs",
+  },
+  {
+    title: "our projects",
+    label: "Our Projects",
+    link: "/projects",
+  },
+  {
+    title: "our team",
+    label: "Out Team",
+    link: "/team",
+  },
+  {
+    title: "give your feedback",
+    label: "Join Us",
+    link: "/join-us",
+  },
+];
+
+export const adminHeaderLinks: NavLink[] = [
+  {
+    title: "dashboard",
+    label: "Dashboard",
+    link: "/admin",
+  },
+  {
+    title: "posts",
+    label: "Posts",
+    link: "/admin/posts",
+  },
+  {
+    title: "event",
+    label: "Events",
+    link: "/admin/events",
+  },
+  {
+    title: "projects",
+    label: "Projects",
+    link: "/admin/projects",
+  },
+  {
+    title: "messages",
+    label: "Messages",
+    link: "/admin/messages",
+  },
+  {
+    title: "new event",
+    label: "New Event",
+    link: "/admin/new-event",
+  },
+  {
+    title: "new blog",
+    label: "New Blog",
+    link: "/admin/new-blog",
+  },
+  {
+    title: "update profile",
+    label: "Profile",
+    link: "/admin/profile",
+  },
+  {
+    title: "logout",
+    label: "Log-Out",
+    link: "/admin/log-out",
   },
 ];
