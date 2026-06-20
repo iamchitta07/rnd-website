@@ -29,3 +29,10 @@ export interface Posts {
   image: StaticImageData;
   publishedDate: Date;
 }
+export interface ProjectCardProps {
+  id: string;
+  title: string;
+  link: string;
+  author: string;
+  content?: string;
+}

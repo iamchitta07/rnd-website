@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ImageUploader from "../_components/ImageUploader";
-import { InputDemo } from "../_components/InputField";
-import { DateTimePicker } from "../_components/DateTimemPicker";
-import { ContentBox } from "../_components/ContentBox";
+import ImageUploader from "../../_components/ImageUploader";
+import { InputDemo } from "../../_components/InputField";
+import { DateTimePicker } from "../../_components/DateTimemPicker";
+import { ContentBox } from "../../_components/ContentBox";
 
 const Home = () => {
   const router = useRouter();
