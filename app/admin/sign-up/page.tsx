@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { InputOTPFourDigits } from "../_components/OtpBox";
 
-const departments: { label: string; value: string }[] = [
+export const departments: { label: string; value: string }[] = [
   { label: "Computer Science and Engineering", value: "cse" },
   { label: "Mathematics and Computing", value: "mc" },
   { label: "Electronics and Communication Engineering", value: "ece" },
@@ -21,7 +21,7 @@ const departments: { label: string; value: string }[] = [
   { label: "Materials and Metalergical Engineering", value: "mm" },
 ] as const;
 
-const batchYear: { label: string; value: string }[] = [
+export const batchYear: { label: string; value: string }[] = [
   { label: "2023-27", value: "final" },
   { label: "2024-28", value: "pre-final" },
   { label: "2025-29", value: "second-year" },
@@ -63,6 +63,7 @@ const Home = () => {
         id="dept"
         placeHolder="Select your department"
         title="Department"
+        className="w-[60%] lg:w-[30%]"
       />
       <ComboboxBasic
         VALUES={batchYear}

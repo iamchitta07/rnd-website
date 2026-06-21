@@ -62,3 +62,16 @@ export interface MessageProps {
   read: boolean;
   date: Date;
 }
+export interface ProfileProps {
+  id: number;
+  name: string;
+  institiute_mail: string;
+  dept: string;
+  year: string;
+  profile_image: string | null | StaticImageData;
+  insta: string | null;
+  github: string | null;
+  facebook: string | null;
+  linkedin: string | null;
+  personal: string | null;
+}

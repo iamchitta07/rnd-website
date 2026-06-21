@@ -15,18 +15,22 @@ export default function ComboboxBasic({
   id,
   placeHolder,
   title,
+  value,
+  className,
 }: {
   VALUES: { label: string; value: string }[];
   id: string;
   placeHolder: string;
   title: string;
+  value?: string;
+  className?: string;
 }) {
   return (
-    <div className="w-[60%] lg:w-[30%]">
+    <div className={className}>
       <FieldLabel htmlFor={id}></FieldLabel>
       <Combobox items={VALUES}>
         {title}
-        <ComboboxInput className="rounded-sm" placeholder={placeHolder} />
+        <ComboboxInput className="rounded-sm" placeholder={placeHolder} value={value} />
         <ComboboxContent>
           <ComboboxEmpty>No items found.</ComboboxEmpty>
           <ComboboxList>

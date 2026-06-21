@@ -8,7 +8,7 @@ export interface InputFieldProps {
   type: string;
   placeHolder: string;
   className?: string;
-  value?: string;
+  value?: string | null;
   onChange?: () => void;
 }
 
@@ -31,7 +31,7 @@ export function InputDemo({
         id={id}
         type={type}
         placeholder={placeHolder}
-        value={value}
+        value={value === null ? undefined : value}
         onChange={onChange}
       />
     </Field>

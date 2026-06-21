@@ -4,7 +4,7 @@ import { type ContackDetail } from "@/types";
 
 const LinkTags = ({ link, image, title, text }: ContackDetail) => {
   return (
-    <Link href={`${link}`} className="flex gap-2 items-center mb-1">
+    <Link href={`${link}`} target="_blank" className="flex gap-2 items-center mb-1">
       <span className="hidden md:block">
         <Image width={20} src={image} alt={title} style={{ color: "zinc-500" }} preload />
       </span>

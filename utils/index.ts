@@ -31,7 +31,7 @@ export const socialLinks: SocialLink[] = [
   {
     title: "GitHub Link",
     image: githubIcon,
-    link: "https://github.com/iamchitta07",
+    link: "https://www.github.com/iamchitta07",
   },
   {
     title: "Linkedin Link",
@@ -41,12 +41,12 @@ export const socialLinks: SocialLink[] = [
   {
     title: "Instagram Link",
     image: instaIcon,
-    link: "http://instagram.com/imchitta07",
+    link: "https://www.instagram.com/imchitta07",
   },
   {
     title: "Facebook Link",
     image: fbIcon,
-    link: "http://facebook.com/imchitta07",
+    link: "https://www.facebook.com/imchitta07",
   },
 ];
 
@@ -131,16 +131,6 @@ export const adminHeaderLinks: NavLink[] = [
     title: "messages",
     label: "Messages",
     link: "/admin/messages",
-  },
-  {
-    title: "new event",
-    label: "New Event",
-    link: "/admin/new-event",
-  },
-  {
-    title: "new blog",
-    label: "New Blog",
-    link: "/admin/new-blog",
   },
   {
     title: "update profile",

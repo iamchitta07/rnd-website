@@ -60,7 +60,6 @@ const Home = () => {
           {dummyPosters.map((e) => (
             // <ProjectCard key={e.id} {...e} />
             <EventCard key={e.id} {...e} />
-
           ))}
         </ul>
       </div>
