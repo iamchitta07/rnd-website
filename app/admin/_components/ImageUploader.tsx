@@ -3,9 +3,10 @@
 import React, { useState, useRef } from "react";
 
 import { Button } from "@/components/ui/button";
+import Image, { StaticImageData } from "next/image";
 
-export default function ImageUploader() {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+export default function ImageUploader({ imageUrl }: { imageUrl?: string | StaticImageData }) {
+  const [previewUrl, setPreviewUrl] = useState<string | undefined | StaticImageData>(imageUrl);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -17,10 +18,10 @@ export default function ImageUploader() {
     if (file) {
       // Validate file type (jpg or png)
 
-      const validTypes = ["image/jpeg", "image/png", "image/jpg"];
+      const validTypes = ["image/jpeg", "image/png", "image/jpg", "image/webp"];
 
       if (!validTypes.includes(file.type)) {
-        alert("Please select a valid image file (JPG or PNG)");
+        alert("Please select a valid image file (JP/PNG or WEBP)");
 
         return;
       }
@@ -42,7 +43,7 @@ export default function ImageUploader() {
   // Remove the image
 
   const handleRemoveImage = () => {
-    setPreviewUrl(null);
+    setPreviewUrl(undefined);
 
     if (fileInputRef.current) {
       fileInputRef.current.value = ""; // Reset input
@@ -57,7 +58,7 @@ export default function ImageUploader() {
         type="file"
         ref={fileInputRef}
         onChange={handleFileChange}
-        accept="image/jpeg, image/png, image/jpg"
+        accept="image/jpeg, image/png, image/jpg, image/webp"
         className="hidden"
       />
 
@@ -67,7 +68,13 @@ export default function ImageUploader() {
         <div className="relative w-full h-auto overflow-hidden border border-white bg-muted flex items-center justify-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
 
-          <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
+          <Image
+            src={previewUrl}
+            alt="Preview"
+            width={100}
+            height={100}
+            className="w-full h-full object-cover"
+          />
         </div>
       ) : (
         <div className="w-full aspect-square rounded-lg border-2 border-dashed flex items-center justify-center text-white/90 text-lg bg-zinc-700/60">

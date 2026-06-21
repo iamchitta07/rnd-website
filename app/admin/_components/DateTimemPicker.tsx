@@ -9,9 +9,19 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
 
-export function DateTimePicker() {
-  const [date, setDate] = React.useState<Date>();
-  const [time, setTime] = React.useState<string>("12:00");
+export function DateTimePicker({
+  defaultDate,
+  onChange,
+}: {
+  defaultDate?: Date;
+  onChange?: () => void;
+}) {
+  const [date, setDate] = React.useState<Date | undefined>(defaultDate);
+  const hh_mm =
+    defaultDate !== undefined
+      ? defaultDate.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
+      : "12:00";
+  const [time, setTime] = React.useState<string>(hh_mm);
 
   const handleDateSelect = (selectedDate: Date | undefined) => {
     if (!selectedDate) return;

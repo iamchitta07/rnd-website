@@ -36,3 +36,17 @@ export interface ProjectCardProps {
   author: string;
   content?: string;
 }
+export interface EventProps {
+  id: number;
+  publisher_id: number;
+  pulished_date: Date;
+  poster_image: string | StaticImageData;
+  event_title: string;
+  event_venue: string;
+  event_date: Date;
+  event_link: string | null;
+  event_description: string;
+  editor_id: number | null;
+  edited_date: Date | null;
+  deleted: boolean;
+}

@@ -9,9 +9,18 @@ export interface InputFieldProps {
   placeHolder: string;
   className?: string;
   value?: string;
+  onChange?: () => void;
 }
 
-export function InputDemo({ id, title, type, placeHolder, className, value }: InputFieldProps) {
+export function InputDemo({
+  id,
+  title,
+  type,
+  placeHolder,
+  className,
+  value,
+  onChange,
+}: InputFieldProps) {
   return (
     <Field className={cn("gap-0", className)}>
       <FieldLabel className="text-white" htmlFor={id}>
@@ -23,6 +32,7 @@ export function InputDemo({ id, title, type, placeHolder, className, value }: In
         type={type}
         placeholder={placeHolder}
         value={value}
+        onChange={onChange}
       />
     </Field>
   );
