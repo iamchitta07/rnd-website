@@ -50,3 +50,15 @@ export interface EventProps {
   edited_date: Date | null;
   deleted: boolean;
 }
+export interface MessageProps {
+  id: number;
+  name: string;
+  phone_number: string;
+  mail: string;
+  dept: string;
+  year: string;
+  domain_interested: string;
+  comment: string;
+  read: boolean;
+  date: Date;
+}

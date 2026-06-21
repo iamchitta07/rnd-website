@@ -3,10 +3,10 @@
 import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
 import Link from "next/link";
-import type { EventProps } from "@/types";
+import type { MessageProps } from "@/types";
 
 interface FuzzySearchProps {
-  data: EventProps[];
+  data: MessageProps[];
 }
 
 export default function SearchBar({ data }: FuzzySearchProps) {
@@ -15,7 +15,7 @@ export default function SearchBar({ data }: FuzzySearchProps) {
   // Initialize and configure Fuse.js using useMemo for performance optimization
   const fuse = useMemo(() => {
     return new Fuse(data, {
-      keys: ["event_title", "event_venue"], // Fields to look through
+      keys: ["name", "mail"], // Fields to look through
       threshold: 0.4, // 0.0 = perfect match, 1.0 = match anything. 0.4 is ideal for typos.
       includeScore: true,
     });
@@ -53,18 +53,15 @@ export default function SearchBar({ data }: FuzzySearchProps) {
         <ul className="absolute w-75 md:w-xl bg-white rounded-sm border shadow-sm max-h-80 overflow-y-auto divide-y divide-gray-100 z-50">
           {results.length > 0 ? (
             results.map((item) => {
-              const link = `/admin/edit-event/${item.id}`;
               return (
                 <Link
-                  href={link}
+                  href={item.id.toString()}
                   key={item.id}
                   className="px-3 py-1 hover:bg-black/90 transition-colors block bg-black"
                 >
-                  <p className="font-medium text-gray-100">{item.event_title}</p>
-                  <p className="font-medium text-gray-100 text-xs">
-                    {item.event_date.toDateString()}
-                  </p>
-                  <p className="font-medium text-gray-100 text-xs">{item.event_venue}</p>
+                  <p className="font-medium text-gray-100">{item.name}</p>
+                  <p className="font-medium text-gray-100 text-xs">{item.mail}</p>
+                  <p className="font-medium text-gray-100 text-xs">{item.dept}</p>
                 </Link>
               );
             })
