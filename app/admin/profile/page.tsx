@@ -1,121 +1,35 @@
-import React from "react";
-import ImageUploader from "../_components/ImageUploader";
-import PFP from "@/public/pfps/DPP2.png";
-import type { ProfileProps } from "@/types";
-import { InputDemo } from "../_components/InputField";
-import ComboboxBasic from "../_components/DepartmentDropdown";
-import { departments, batchYear } from "../sign-up/page";
-import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
+import UpdateProfileForm from "../_components/UpdateProfileForm";
+import { getProfile } from "@/utils/admin/profile";
+import { Metadata } from "next";
 
-/**
-export interface ProfileProps {
-  id: number;
-  name: string;
-  institiute_mail: string;
-  dpet: string;
-  year: string;
-  profile_image: string | null;
-  insta: string | null;
-  github: string | null;
-  facebook: string | null;
-  linkedin: string | null;
-  personal: string | null;
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await getProfile();
+  return {
+    title: profile ? `${profile.name} | Update Profile` : "Update Profile - RnD",
+    description: "Update your profile information",
+  };
 }
- */
 
-const profile: ProfileProps = {
-  id: 1,
-  name: "Chittajit Nath",
-  institiute_mail: "cn.24u10282@nitdgp.ac.in",
-  dept: "Commputer Science and Engineering",
-  year: "3rd",
-  profile_image: PFP,
-  insta: null,
-  github: null,
-  facebook: null,
-  linkedin: null,
-  personal: null,
-};
-
-const Home = () => {
+const Home = async () => {
+  const profile = await getProfile();
   return (
     <div className="text-white min-h-screen md:min-h-0 mt-10 md:mt-20 w-full flex flex-col justify-center items-center gap-2 md:gap-4 md:mb-20">
-      <h1 className="text-white underline text-2xl md:text-6xl select-none">Upadate Profile</h1>
-      <ImageUploader imageUrl={profile.profile_image!} />
-
-      <InputDemo
-        type="text"
-        placeHolder="Enter your name"
-        title="Name"
-        id="mail"
-        value={profile.name}
-        className="w-75 md:w-sm"
-      />
-      <InputDemo
-        type="email"
-        placeHolder="Enter your institute mail"
-        title="Institute Mail"
-        id="mail"
-        value={profile.institiute_mail}
-        className="w-75 md:w-sm"
-      />
-      <ComboboxBasic
-        VALUES={departments}
-        id="dept"
-        placeHolder="Select your department"
-        title="Department"
-        value={profile.dept}
-        className="w-75 md:w-sm"
-      />
-      <ComboboxBasic
-        VALUES={batchYear}
-        id="atch"
-        placeHolder="Select your batch"
-        title="Batch Year"
-        value={profile.year}
-        className="w-75 md:w-sm"
-      />
-      <InputDemo
-        type="text"
-        placeHolder="Enter your instagram handel"
-        title="Insta Handel"
-        id="insta"
-        value={profile.insta}
-        className="w-75 md:w-sm"
-      />
-      <InputDemo
-        type="text"
-        placeHolder="Enter your github handel"
-        title="GitHub Handel"
-        id="github"
-        value={profile.github}
-        className="w-75 md:w-sm"
-      />
-      <InputDemo
-        type="text"
-        placeHolder="Enter your Linkedin handel"
-        title="Linkedin Handel"
-        id="linkedin"
-        value={profile.linkedin}
-        className="w-75 md:w-sm"
-      />
-      <InputDemo
-        type="text"
-        placeHolder="Enter your facebook handel"
-        title="Facebook Handel"
-        id="facebook"
-        value={profile.facebook}
-        className="w-75 md:w-sm"
-      />
-      <InputDemo
-        type="email"
-        placeHolder="Enter your personal mail"
-        title="Personal Mail"
-        id="persona-mail"
-        value={profile.personal}
-        className="w-75 md:w-sm"
-      />
-      <Button className="px-10 py-5">Save Changes</Button>
+      <Suspense
+        fallback={
+          <h1 className="text-2xl font-bold text-white h-full flex items-center justify-center w-full">
+            Loading...
+          </h1>
+        }
+      >
+        {profile ? (
+          <UpdateProfileForm profile={profile} />
+        ) : (
+          <h1 className="text-2xl font-bold text-white h-full flex items-center justify-center w-full">
+            Sorry! No Profile found
+          </h1>
+        )}
+      </Suspense>
     </div>
   );
 };

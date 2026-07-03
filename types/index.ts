@@ -1,7 +1,6 @@
 import { StaticImageData } from "next/image";
 
 export interface ContackDetail {
-  image: string;
   title: string;
   link: string;
   text: string;
@@ -34,6 +33,7 @@ export interface ProjectCardProps {
   title: string;
   link: string;
   author: string;
+  date: Date;
   content?: string;
 }
 export interface EventProps {
@@ -74,4 +74,32 @@ export interface ProfileProps {
   facebook: string | null;
   linkedin: string | null;
   personal: string | null;
+}
+
+export interface MediaProps {
+  id: number;
+  url: string;
+  type: "IMAGE" | "VIDEO";
+}
+
+export interface PosterProps {
+  id: number;
+  publisher_id: number;
+  pulished_date: Date;
+  blog_thumbnail: MediaProps[];
+  blog_title: string;
+  blog_description: string;
+  editor_id: number | null;
+  edited_date: Date | null;
+  deleted: boolean;
+}
+
+export interface JoinUsProps {
+    name: string;
+    email: string;
+    phone: string;
+    dept: string;
+    year: string;
+    interest: string;
+    content: string;
 }

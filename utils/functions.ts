@@ -1,22 +1,3 @@
-import { useEffect, useState } from "react";
-
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // 768px matches Tailwind's 'md' breakpoint default
-    const media = window.matchMedia("(max-width: 767px)");
-
-    const listener = () => setIsMobile(media.matches);
-    listener(); // Initial check
-
-    media.addEventListener("change", listener);
-    return () => media.removeEventListener("change", listener);
-  }, []);
-
-  return isMobile;
-}
-
 export function formatMyDate(date: Date) {
   // Extract date components
   const dd = String(date.getDate()).padStart(2, "0");
@@ -51,4 +32,8 @@ export function formatDateHr(date: Date) {
   const hh = String(hours).padStart(2, "0");
 
   return `${dd}.${mm}.${yyyy}, ${hh}:${minutes}:${sec}`;
+}
+
+export function isInvalidInput(text: string): boolean {
+  return text.trim() === "";
 }

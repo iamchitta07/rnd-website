@@ -1,40 +1,16 @@
-"use client";
+import { Metadata } from "next";
+import SignIn from "../_components/Sign-In";
 
-import { InputDemo } from "../_components/InputField";
-import { Button } from "@/components/ui/button";
+export const metadata: Metadata = {
+  title: "Sign In | Admin | CCA RnD",
+  description:
+    "Write from the begining of the dark age alot of ground breaking discoveries were made by man. There is no field in which research is not done. Research and Development (R&D) flourishes where young minds and experienced faculties work synergistically. R&D Cell has been established to promote and monitor the research Programs of the institute. The cell administers all the research Programs of the university by monitoring and coordinating the research Programs.The Research and Development Cell aims to nurture research culture in the College by promoting research in newly emerging and challenging areas of Engineering, Technology, Science and Humanities. Faculty and students have been encouraged to be creative, since it is the creative aspect that induces newer thinking. Lectures and demonstration are made for students to kindle their spirit of creativity by our own faculty and other experts along with paper presentation and workshop.",
+};
 
 const Home = () => {
   return (
-    <div className="text-white min-h-screen md:min-h-0 md:mt-60 lg:mt-20 w-full flex flex-col justify-center items-center gap-2 md:gap-3">
-      <InputDemo
-        type="text"
-        placeHolder="Enter your name"
-        title="Name"
-        id="name"
-        className="w-[60%] lg:w-[30%]"
-      />
-      <InputDemo
-        type="email"
-        placeHolder="Enter your mail (institute mail preferred)"
-        title="E-mail"
-        id="mail"
-        className="w-[60%] lg:w-[30%]"
-      />
-      <InputDemo
-        type="password"
-        placeHolder="Secret Key"
-        title="Secret Key"
-        id="secret_key"
-        className="w-[60%] lg:w-[30%]"
-      />
-      <div className="w-[60%] flex justify-center gap-5 md:gap-10 my-5">
-        <Button className="md:text-lg md:px-5 md:py-4 md:rounded-md lg:text-xl lg:px-8 lg:py-6">
-          New Here ?
-        </Button>
-        <Button className="md:text-lg md:px-5 md:py-4 md:rounded-md lg:text-xl lg:px-8 lg:py-6">
-          Sign-In
-        </Button>
-      </div>
+    <div className="w-full px-5 lg:px-20 flex-1 min-h-screen flex flex-col items-center justify-center">
+      <SignIn />
     </div>
   );
 };

@@ -77,7 +77,7 @@ const Footer = () => {
           <a
             href="https://www.linkedin.com/in/chittajit-nath"
             target="_blank"
-            className="text-blue-600"
+            className="text-blue-600 transition hover:text-blue-400 duration-150"
           >
             Chittajit Nath
           </a>

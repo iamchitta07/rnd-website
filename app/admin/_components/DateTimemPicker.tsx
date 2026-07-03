@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -8,20 +7,19 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
+import { ChangeEvent, useState } from "react";
 
 export function DateTimePicker({
-  defaultDate,
-  onChange,
+  defaultDate
 }: {
   defaultDate?: Date;
-  onChange?: () => void;
 }) {
-  const [date, setDate] = React.useState<Date | undefined>(defaultDate);
+  const [date, setDate] = useState<Date | undefined>(defaultDate);
   const hh_mm =
     defaultDate !== undefined
       ? defaultDate.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
       : "12:00";
-  const [time, setTime] = React.useState<string>(hh_mm);
+  const [time, setTime] = useState<string>(hh_mm);
 
   const handleDateSelect = (selectedDate: Date | undefined) => {
     if (!selectedDate) return;
@@ -31,7 +29,7 @@ export function DateTimePicker({
     setDate(updatedDate);
   };
 
-  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const timeVal = e.target.value;
     setTime(timeVal);
     if (date) {
@@ -43,8 +41,9 @@ export function DateTimePicker({
   };
 
   return (
-    <div className="flex flex-col gap-2 w-75 md:w-sm">
-      <label className="md:text-xl lg:text-2xl text-white">Select Date and Time</label>
+    <div className="flex flex-col gap-2 w-75 md:w-xl xl:w-2xl text-md md:text-xl lg:text-2xl">
+      <label className="text-md md:text-lg text-white">Select Date and Time</label>
+      <input type="hidden" name="date" value={date?.toISOString() || ""} />
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -61,7 +60,7 @@ export function DateTimePicker({
           <Calendar mode="single" selected={date} onSelect={handleDateSelect} className="dark" />
           <div className="p-3 border-t border-border flex items-center justify-between gap-4">
             <span className="text-lg font-semibold tracking-wider text-black/80">Time</span>
-            <Input type="time" value={time} onChange={handleTimeChange} className="w-[120px] h-9" />
+            <Input type="time" value={time} onChange={handleTimeChange} className="w-30 h-9" />
           </div>
         </PopoverContent>
       </Popover>

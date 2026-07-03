@@ -1,8 +1,6 @@
-"use client";
 import type { EventProps } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
-import { useIsMobile } from "@/utils/functions";
 
 const EventCard = ({
   id,
@@ -21,28 +19,44 @@ const EventCard = ({
   inFormat += new Intl.DateTimeFormat("en-GB").format(date).replace(/\//g, ".");
   let name = edited_date === null ? "Published by " : deleted ? "Deleted by " : "Edited by ";
   name += editor_id === null ? publisher_id : editor_id;
-  const isMobile = useIsMobile();
-  const imageHt = isMobile ? 100 : 180;
   return (
     <Link
       href={link}
-      className="w-75 md:w-xl h-30 md:h-50 bg-slate-700 rounded-sm md:rounded-md flex items-center pl-2 pr-3 md:pr-4 gap-2 md:gap-4"
+      className="w-75 md:w-xl xl:w-2xl h-30 md:h-50 bg-slate-700 rounded-sm md:rounded-md flex items-center pl-2 pr-3 md:pr-4 gap-2 md:gap-4 overflow-hidden"
     >
-      <Image src={poster_image} alt={event_title} height={imageHt} className="block" />
-      <div className="h-30 md:h-50 py-2 md:py-3">
+      {/* FIXED: Added flex-shrink-0, set an appropriate height/width constrained to the card */}
+      <div className="relative shrink-0 w-24 sm:w-32 md:w-44 h-[85%] aspect-video bg-gray-100 overflow-hidden">
+        <Image
+          src={poster_image}
+          alt={event_title}
+          fill
+          sizes="(max-width: 768px) 150px, 200px" // Updated sizes match the actual rendered dimensions better
+          className="object-cover"
+          priority // Recommended for card lists/above-the-fold content
+        />
+      </div>
+
+      {/* Text Content */}
+      <div className="flex-1 min-w-0 h-full py-2 md:py-3 flex flex-col justify-center">
         {deleted === false ? (
-          <h1 className="text-sm/6 md:text-2xl/6 text-white">{event_title}</h1>
+          <h1 className="text-sm/6 md:text-2xl/6 font-semibold text-white truncate">
+            {event_title}
+          </h1>
         ) : (
-          <div className="w-full flex justify-between">
-            <h1 className="text-sm/6 md:text-2xl/6 text-white">{event_title}</h1>
-            <h1 className="text-[10px] md:text-md text-red-500 italic">Deleted</h1>
+          <div className="w-full flex justify-between items-center gap-2">
+            <h1 className="text-sm/6 md:text-2xl/6 font-semibold text-white truncate">
+              {event_title}
+            </h1>
+            <span className="text-[10px] md:text-sm text-red-400 italic font-medium shrink-0">
+              Deleted
+            </span>
           </div>
         )}
-        <h1 className="text-white text-xs md:text-md/loose">{inFormat}</h1>
-        <h1 className="italic text-xs md:text-md text-white">{name}</h1>
-        <h1 className="text-[8px] md:text-xs text-white line-clamp-4 md:line-clamp-6 text-justify">
+        <h2 className="text-white text-xs md:text-sm mt-0.5">{inFormat}</h2>
+        <h3 className="italic text-xs md:text-sm text-slate-300">{name}</h3>
+        <p className="text-[10px] md:text-xs text-slate-200 line-clamp-2 md:line-clamp-4 text-justify mt-1 leading-relaxed">
           {event_description}
-        </h1>
+        </p>
       </div>
     </Link>
   );

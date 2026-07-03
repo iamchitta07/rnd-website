@@ -28,14 +28,14 @@ export default function SearchBar({ data }: FuzzySearchProps) {
   }, [query, fuse, data]);
 
   return (
-    <div className="relaive w-75 md:w-xl">
+    <div className="relaive w-75 md:w-xl xl:w-2xl">
       {/* Search Input Box */}
       <div className="relative mb-4">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search projects..."
+          placeholder="Search Events..."
           className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
         />
         {query && (
