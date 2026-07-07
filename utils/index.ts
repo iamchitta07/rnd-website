@@ -41,14 +41,14 @@ export const socialLinks: SocialLink[] = [
   {
     title: "Facebook Link",
     image: fbIcon,
-    link: "https://www.facebook.com/imchitta07",
+    link: "https://www.facebook.com/chittajit.nath.7",
   },
 ];
 
 export const navLinks: NavLink[] = [
   {
     title: "our projects",
-    label: "Out Projects",
+    label: "Our Projects",
     link: "/projects",
   },
   {
@@ -86,7 +86,7 @@ export const userHeaderLinks: NavLink[] = [
   },
   {
     title: "our blogs",
-    label: "Blog",
+    label: "Blogs",
     link: "/blogs",
   },
   {

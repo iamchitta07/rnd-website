@@ -1,4 +1,4 @@
-import SearchBarEvent from "../_components/SearchBarEvent";
+import SearchBarEvent from "../../../_components/SearchBarEvent";
 import StickyAddButton from "../_components/AddButton";
 import EventCard from "../_components/EventCard";
 import { getEvents } from "@/utils/admin/events";

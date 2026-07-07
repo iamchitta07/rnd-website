@@ -1,0 +1,93 @@
+.outerBox {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  display: flex;
+  color: white;
+  width: 300px;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  z-index: 10;
+}
+
+.textBox {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: start;
+  padding: 5px 5px 0 0;
+}
+
+.title {
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  line-height: 10px;
+}
+
+.date {
+  font-size: 7px;
+  color: white;
+  opacity: 60%;
+}
+
+.description {
+  padding-top: 2px;
+  font-size: 6px;
+  line-height: 8px;
+}
+
+@media (min-width: 768px) {
+  .outerBox {
+    width: 600px;
+    gap: 15px;
+  }
+
+  .textBox {
+    padding: 12px 12px 0 0;
+  }
+
+  .title {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+
+  .description {
+    padding-top: 6px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .outerBox {
+    width: 900px;
+    gap: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .textBox {
+    padding: 18px 18px 0 0;
+  }
+
+  .title {
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    line-height: 22px;
+  }
+
+  .date {
+    font-size: 16px;
+  }
+
+  .description {
+    padding-top: 10px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

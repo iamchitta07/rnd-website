@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="w-full hidden md:block">
         <div className="w-full flex">
           <nav className="w-1/3">
-            <p className="font-semibold text-xl lg:text-2xl uppercase mb-3 text-zinc-300">
+            <p className="font-semibold text-xl lg:text-2xl uppercase mb-3 text-zinc-100">
               Contact Us On
             </p>
             {contactDetails.map((contact, idx) => (
@@ -17,7 +17,7 @@ const Footer = () => {
             ))}
           </nav>
           <nav className="flex flex-col items-center w-1/3">
-            <p className="font-semibold text-zinc-300 text-xl lg:text-2xl uppercase mb-3">
+            <p className="font-semibold text-zinc-100 text-xl lg:text-2xl uppercase mb-3">
               Follow us on
             </p>
             <div className="flex gap-5">
@@ -28,7 +28,7 @@ const Footer = () => {
           </nav>
           <nav className="w-1/3 flex justify-end">
             <div>
-              <p className="font-semibold text-zinc-300 text-xl lg:text-2xl uppercase mb-3">
+              <p className="font-semibold text-zinc-100 text-xl lg:text-2xl uppercase mb-3">
                 Useful links
               </p>
               {navLinks.map((navLink, idx) => (

@@ -39,8 +39,8 @@ export interface ProjectCardProps {
 export interface EventProps {
   id: number;
   publisher_id: number;
-  pulished_date: Date;
-  poster_image: string | StaticImageData;
+  published_date: Date;
+  poster_image: string;
   event_title: string;
   event_venue: string;
   event_date: Date;
@@ -74,6 +74,7 @@ export interface ProfileProps {
   facebook: string | null;
   linkedin: string | null;
   personal: string | null;
+  por: string | null;
 }
 
 export interface MediaProps {
@@ -85,7 +86,7 @@ export interface MediaProps {
 export interface PosterProps {
   id: number;
   publisher_id: number;
-  pulished_date: Date;
+  published_date: Date;
   blog_thumbnail: MediaProps[];
   blog_title: string;
   blog_description: string;
@@ -95,11 +96,25 @@ export interface PosterProps {
 }
 
 export interface JoinUsProps {
-    name: string;
-    email: string;
-    phone: string;
-    dept: string;
-    year: string;
-    interest: string;
-    content: string;
+  name: string;
+  email: string;
+  phone: string;
+  dept: string;
+  year: string;
+  interest: string;
+  content: string;
+}
+
+export interface MemberProps {
+  id: number;
+  name: string;
+  email: string | null;
+  phone: string | null;
+  poster_image: string | null;
+  insta: string | null;
+  github: string | null;
+  facebook: string | null;
+  linkedin: string | null;
+  position: string;
+  year: number;
 }

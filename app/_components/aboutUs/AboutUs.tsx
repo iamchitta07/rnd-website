@@ -1,7 +1,7 @@
 const AboutUs = () => {
   return (
-    <div className="pt-30 pb-30 md:pb-0 px-5 lg:px-20">
-      <h1 className="text-4xl md:text-6xl text-center">About Us</h1>
+    <div className="pt-20 pb-20 md:pb-0 px-5 lg:px-20">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl text-center">About Us</h1>
       <p className="text-center mt-5 text-md ">
         Write from the begining of the dark age alot of ground breaking discoveries were made by
         man. There is no field in which research is not done. Research and Development (R&D)

@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "www.image2url.com",
       },
+      {
+        protocol: "https",
+        hostname: "scontent.cdninstagram.com",
+      },
     ],
   },
 };

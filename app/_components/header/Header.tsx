@@ -38,7 +38,7 @@ const Header = ({ LINKS }: { LINKS: NavLink[] }) => {
           <div className="flex-1 md:flex md:items-center md:gap-12 mt-1">
             <Link className="block text-teal-600" href="/">
               <span className="sr-only">Home</span>
-              <Image src={logo} className="h-9 md:h-10 lg:h-12 w-auto" alt="logo" />
+              <Image src={logo} className="h-9 md:h-10 lg:h-12 w-auto" alt="logo" loading="eager" />
             </Link>
           </div>
 

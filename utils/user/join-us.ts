@@ -2,6 +2,7 @@
 
 import { isInvalidInput } from "../functions";
 import { JoinUsProps } from "@/types";
+import xss from "xss";
 
 export interface JoinUsErrorProps {
   name: string | null;
@@ -22,7 +23,7 @@ export async function messageSubmitHandler(
   const dept = formData.get("dept") as string;
   const year = formData.get("year") as string;
   const interest = formData.get("interest") as string;
-  const content = formData.get("content") as string;
+  const content = xss(formData.get("content") as string);
 
   const err: JoinUsErrorProps = {
     name: null,

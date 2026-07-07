@@ -34,7 +34,7 @@ const dummyPosters: PosterProps[] = [
       },
     ],
     publisher_id: 1,
-    pulished_date: new Date(2026, 5, 12, 11, 30, 30),
+    published_date: new Date(2026, 5, 12, 11, 30, 30),
     blog_description:
       "Researchers at the University of Missouri-Columbia have developed an innovative method to remove microplastics from drinking water using genetically engineered algae. Led by Susie Dai, the team discovered that the modified algae produce limonene, a natural oil similar to substances found in orange peels. Because limonene repels water like plastic does, it attracts and traps tiny microplastic particles, causing them to clump together and making them easier to remove from water. Microplastics have become a global environmental concern, as they are found in oceans, rivers, food, and even the human body. Conventional filtration systems often struggle to capture these extremely small particles. In laboratory tests, the algae removed significant amounts of microplastics quickly and efficiently.",
     editor_id: null,
@@ -57,7 +57,7 @@ const dummyPosters: PosterProps[] = [
       },
     ],
     publisher_id: 2,
-    pulished_date: new Date(2026, 4, 12, 11, 30, 30),
+    published_date: new Date(2026, 4, 12, 11, 30, 30),
     blog_description:
       "A PID controller is the hidden brain that keeps a drone calm and steady in the air. It balances three actions Proportional, Integral, and Derivative to constantly correct the drone’s motion.",
     editor_id: 1,
@@ -76,12 +76,12 @@ const dummyPosters: PosterProps[] = [
       },
     ],
     publisher_id: 2,
-    pulished_date: new Date(2026, 2, 12, 13, 30, 30),
+    published_date: new Date(2026, 2, 12, 13, 30, 30),
     blog_description:
       "Researchers at the University of California, Davis have used artificial intelligence to boost plant immunity, helping crops like tomatoes and potatoes resist bacterial infections. Using AlphaFold, an AI system that predicts protein structures, they redesigned the immune receptor FLS2, which identifies flagellin, a bacterial movement protein. Since bacteria mutate flagellin to escape detection, the AI-guided redesign enabled plants to recognize more bacterial variants and strengthen their defenses.",
     editor_id: 1,
     edited_date: new Date(2026, 4, 15, 11, 30, 30),
-    deleted: true,
+    deleted: false,
   },
 ];
 
@@ -105,7 +105,7 @@ const example: PosterProps = {
     },
   ],
   publisher_id: 2,
-  pulished_date: new Date(2026, 4, 12, 11, 30, 30),
+  published_date: new Date(2026, 4, 12, 11, 30, 30),
   blog_description:
     "A PID controller is the hidden brain that keeps a drone calm and steady in the air. It balances three actions Proportional, Integral, and Derivative to constantly correct the drone’s motion.",
   editor_id: 1,
@@ -121,3 +121,5 @@ export const getPost = async (id: number): Promise<PosterProps | undefined> => {
     }, 2000);
   });
 };
+
+

@@ -1,0 +1,186 @@
+.outerBox {
+  position: relative;
+  overflow: hidden;
+  height: auto;
+  width: 300px;
+  display: inline-block;
+  z-index: 15;
+}
+
+.imageOuterBox {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.5s;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+.imageBox {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+
+.imageBox img {
+  object-fit: contain;
+  height: auto;
+  width: 100%;
+  transition: ease 0.3s;
+}
+
+.leftButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 20;
+  left: 5px;
+  background-color: white;
+  opacity: 80%;
+  height: 12px;
+  width: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 6px;
+  transition: ease-in-out 100ms;
+}
+.leftButton:hover {
+  opacity: 100%;
+}
+
+.arrow {
+  height: 8px;
+  width: 8px;
+  font-weight: bold;
+  color: black;
+}
+
+.rightButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 20;
+  right: 5px;
+  background-color: white;
+  opacity: 80%;
+  height: 12px;
+  width: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 10px;
+  transition: ease-in-out 100ms;
+}
+.rightButton:hover {
+  opacity: 100%;
+}
+
+.bottomNav {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  z-index: 20;
+  align-items: center;
+}
+
+.bottomBtn {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all;
+  transition: 300ms ease-in-out;
+  background-color: white;
+}
+
+.btnNotSelected {
+  opacity: 60%;
+}
+
+.btnSelected {
+  scale: 1.1;
+  opacity: 100%;
+}
+
+@media (min-width: 768px) {
+  .outerBox {
+    width: 400px;
+  }
+  .imageOuterBox {
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  .leftButton {
+    left: 10px;
+    height: 20px;
+    width: 20px;
+    box-shadow: 8px;
+  }
+
+  .arrow {
+    height: 16px;
+    width: 16px;
+  }
+
+  .rightButton {
+    right: 10px;
+    height: 20px;
+    width: 20px;
+    box-shadow: 8px;
+  }
+
+  .bottomNav {
+    bottom: 8px;
+    gap: 4px;
+  }
+
+  .bottomBtn {
+    height: 6px;
+    width: 6px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .outerBox {
+    width: 500px;
+  }
+
+  .leftButton {
+    left: 16px;
+    height: 28px;
+    width: 28px;
+    box-shadow: 10px;
+  }
+
+  .arrow {
+    height: 20px;
+    width: 20px;
+  }
+
+  .rightButton {
+    right: 16px;
+    height: 28px;
+    width: 28px;
+    box-shadow: 10px;
+  }
+
+  .bottomNav {
+    bottom: 12px;
+    gap: 6px;
+  }
+
+  .bottomBtn {
+    height: 8px;
+    width: 8px;
+  }
+}

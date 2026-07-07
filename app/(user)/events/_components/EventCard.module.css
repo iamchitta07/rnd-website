@@ -1,0 +1,161 @@
+.outerBox {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: 200px;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  z-index: 10;
+  padding: 5px;
+}
+
+.textBox {
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  line-height: 10px;
+}
+
+.date {
+  font-size: 7px;
+  color: white;
+  opacity: 60%;
+}
+
+.venue {
+  font-size: 8px;
+
+  color: white;
+}
+
+.description {
+  padding-top: 2px;
+  font-size: 6px;
+  line-height: 8px;
+  text-align: justify;
+}
+
+.register {
+  font-size: 12px;
+  background-color: oklch(0.205 0 0);
+  border-radius: 4px;
+  padding: 4px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 1);
+}
+
+.register:hover {
+  background-color: oklch(0.25 0 0);
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .outerBox {
+    width: 500px;
+    gap: 8px;
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 18px;
+  }
+
+  .date {
+    font-size: 16px;
+  }
+
+  .venue {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .description {
+    padding-top: 6px;
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .register {
+    margin-top: 10px;
+    font-size: 24px;
+    border-radius: 8px;
+    padding: 8px 35px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .outerBox {
+    flex-direction: row;
+    width: 800px;
+    gap: 5px;
+    border-radius: 0px;
+    padding: 0px;
+  }
+
+  .textBox {
+    padding: 15px 15px 10px 10px;
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .title {
+    text-align: start;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 32px;
+  }
+
+  .date {
+    font-size: 14px;
+    color: white;
+    opacity: 60%;
+  }
+
+  .venue {
+    font-size: 20px;
+    color: white;
+  }
+
+  .description {
+    padding-top: 7px;
+    font-size: 12px;
+    line-height: 13px;
+    text-align: justify;
+  }
+  .register {
+    font-size: 20px;
+    background-color: oklch(0.205 0 0);
+    border-radius: 8px;
+    padding: 8px 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    transition: all 0.2s ease;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}

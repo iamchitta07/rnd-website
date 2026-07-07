@@ -67,7 +67,7 @@ export default function JoinUsForm() {
       />
       <ContentBox placeHolder="Tell us about your interests and goals" />
       <Button
-        className="md:text-lg md:px-5 md:py-4 md:rounded-md lg:text-xl lg:px-8 lg:py-6"
+        className="md:text-lg md:px-5 md:py-4 md:rounded-md lg:text-xl lg:px-8 lg:py-6 cursor-pointer"
         disabled={isPending}
         type="submit"
       >

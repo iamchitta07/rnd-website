@@ -1,0 +1,101 @@
+.outerBox {
+  background-color: rgba(9, 9, 11);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  width: 320px;
+  gap: 5px;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 10px 7px rgba(255, 255, 255, 0.1);
+  box-shadow: 1px 1px 10px 7px rgba(255, 255, 255, 0.1);
+}
+
+.textBox {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: start;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  line-height: 15px;
+  text-align: start;
+}
+
+.date {
+  font-size: 12px;
+  color: white;
+  opacity: 60%;
+}
+
+.description {
+  padding-top: 2px;
+  font-size: 10px;
+  line-height: 11px;
+}
+
+@media (711px<width<=1439px) {
+  .outerBox {
+    width: 440px;
+    padding: 20px;
+    border-radius: 20px;
+    gap: 10px;
+  }
+
+  .textBox {
+    text-align: justify;
+  }
+
+  .title {
+    font-size: 18px;
+    line-height: 18px;
+    text-align: start;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+
+  .description {
+    padding-top: 6px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .outerBox {
+    width: 540px;
+    padding: 20px;
+    gap: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 15px;
+  }
+  .textBox {
+    text-align: justify;
+  }
+
+  .title {
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    line-height: 22px;
+    text-align: start;
+  }
+
+  .date {
+    font-size: 16px;
+  }
+
+  .description {
+    padding-top: 10px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

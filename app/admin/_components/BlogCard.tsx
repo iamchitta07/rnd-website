@@ -7,7 +7,7 @@ const BlogCard = ({
   id,
   blog_title,
   blog_thumbnail,
-  pulished_date,
+  published_date,
   blog_description,
   publisher_id,
   editor_id,
@@ -15,7 +15,7 @@ const BlogCard = ({
   deleted,
 }: PosterProps) => {
   const link = `/admin/posts/${id}`;
-  const date = edited_date ? formatDateHr(edited_date) : formatDateHr(pulished_date);
+  const date = edited_date ? formatDateHr(edited_date) : formatDateHr(published_date);
   const dateString = edited_date
     ? deleted
       ? `Deleted on: ${date}`

@@ -35,7 +35,7 @@ export default function SearchBar({ data }: FuzzySearchProps) {
   }, [query, fuse, data]);
 
   return (
-    <div className="relaive w-75 md:w-xl xl:w-2xl">
+    <div className="relaive w-75 md:w-xl lg:w-2xl">
       {/* Search Input Box */}
       <div className="relative mb-4">
         <input

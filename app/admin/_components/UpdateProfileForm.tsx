@@ -4,7 +4,7 @@ import { ProfileProps } from "@/types";
 import { InputDemo } from "@/_components/InputField";
 import ComboboxBasic from "@/_components/DepartmentDropdown";
 import ImageUploader from "./ImageUploader";
-import { batchYear, departments } from "@/utils/constants";
+import { batchYear, departments, por } from "@/utils/constants";
 import { useActionState } from "react";
 import { ProfileUpdateErrorProps, updateProfile } from "@/utils/admin/profile";
 const initialValue: ProfileUpdateErrorProps = {
@@ -46,6 +46,14 @@ export default function UpdateProfileForm({ profile }: { profile: ProfileProps }
         placeHolder="Select your batch"
         title="Batch Year"
         value={profile.year}
+        className="w-75 md:w-xl xl:w-2xl text-md md:text-xl lg:text-2xl"
+      />
+      <ComboboxBasic
+        VALUES={por}
+        id="role"
+        placeHolder="Select your role"
+        title="Role"
+        value={profile.por ?? ""}
         className="w-75 md:w-xl xl:w-2xl text-md md:text-xl lg:text-2xl"
       />
       <InputDemo

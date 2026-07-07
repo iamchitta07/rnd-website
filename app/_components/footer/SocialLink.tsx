@@ -4,7 +4,7 @@ import type { SocialLink } from "@/types";
 
 const SocialLink = ({ title, image, link, sz }: SocialLink & { sz: number }) => {
   return (
-    <div className="p-2 bg-white md:bg-zinc-300 hover:bg-white transition duration-150 rounded-full">
+    <div className="p-2 bg-white lg:bg-zinc-300 hover:bg-white transition duration-150 rounded-full">
       <Link href={link} target="_blank">
         <Image height={sz} src={image} alt={title} preload />
       </Link>

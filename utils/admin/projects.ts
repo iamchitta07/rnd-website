@@ -1,5 +1,5 @@
 "use server";
-
+import xss from "xss";
 import { ProjectCardProps } from "@/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -118,7 +118,7 @@ export async function updateProject(
     // TODO: Implement update event logic
     const title = formData.get("title") as string;
     const link = formData.get("project-link") as string;
-    const content = formData.get("content") as string;
+    const content = xss(formData.get("content") as string);
     const err: ProjectSubmitErrorProps = {
       title: null,
       projectLink: null,

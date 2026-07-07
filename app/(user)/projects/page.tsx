@@ -12,8 +12,15 @@ export const metadata: Metadata = {
 
 async function GetProjects() {
   const projects = await getProjects();
+  if (!projects) {
+    return (
+      <h1 className="text-2xl font-bold text-white flex items-center justify-center w-full">
+        No Project Found
+      </h1>
+    );
+  }
   return (
-    <div className="w-full px-5 lg:px-20 flex flex-col items-center gap-4 flex-1">
+    <div className="w-full px-5 lg:px-20 flex flex-col items-center gap-4 flex-1 min-h-screen">
       <SearchBar data={projects} />
       {projects.length ? (
         <ul className="w-full flex flex-col gap-2 md:gap-3 items-center ">

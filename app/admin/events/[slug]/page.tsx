@@ -29,7 +29,7 @@ async function GetEvent({ slug }: { slug: string }) {
       </h1>
     );
   }
-  const date = event.edited_date === null ? event.pulished_date : event.edited_date;
+  const date = event.edited_date === null ? event.published_date : event.edited_date;
   let inFormat =
     event.edited_date === null ? "Published on " : event.deleted ? "Deleted on " : "Edited on ";
   const eventTime = formatMyDate(event.event_date);

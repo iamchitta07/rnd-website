@@ -1,0 +1,64 @@
+.outerBox {
+  position: relative;
+  overflow: hidden;
+  width: 190px;
+  height: auto;
+  display: inline-block;
+  z-index: 15;
+}
+
+.imageOuterBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.5s;
+}
+
+.imageBox {
+  position: relative;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+
+.imageBox img {
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+  transition: ease 0.3s;
+}
+
+@media (min-width: 768px) {
+  .outerBox {
+    width: 470px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .outerBox {
+    height: 400px;
+    width: auto;
+  }
+
+  .imageOuterBox {
+    height: 100%;
+    width: 100%;
+  }
+
+  .imageBox {
+    position: relative;
+    height: 100%;
+    width: auto;
+    border-radius: 0px;
+    border: none;
+  }
+
+  .imageBox img {
+    object-fit: contain;
+    height: 100%;
+    width: auto;
+    transition: ease 0.3s;
+  }
+}

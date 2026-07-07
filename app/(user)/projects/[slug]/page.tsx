@@ -2,6 +2,7 @@ import Link from "next/link";
 import BackButton from "@/_components/BackButton";
 import { getProject } from "@/utils/admin/projects";
 import { Suspense } from "react";
+import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
@@ -15,11 +16,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ slug: str
 async function GetProject({ slug }: { slug: string }) {
   const project = await getProject(slug);
   if (!project) {
-    return (
-      <h1 className="text-2xl font-bold text-white h-full flex items-center justify-center w-full">
-        Sorry! No Project found
-      </h1>
-    );
+    notFound();
   }
   return (
     <>

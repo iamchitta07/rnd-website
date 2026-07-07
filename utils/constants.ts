@@ -34,3 +34,12 @@ export const interests: { label: string; value: string }[] = [
   { label: "AR/VR", value: "ar-vr" },
   { label: "Other", value: "other" },
 ] as const;
+
+export const por: { label: string; value: string }[] = [
+  { label: "RnD Head", value: "head" },
+  { label: "Innovation Head", value: "innovation" },
+  { label: "Execution Head", value: "execution" },
+  { label: "Senior Member", value: "senior" },
+  { label: "Junior Member", value: "junior" },
+  { label: "Alumni", value: "alumni" },
+] as const;

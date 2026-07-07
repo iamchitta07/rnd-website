@@ -23,33 +23,33 @@ interface SlideData {
 const SLIDES: SlideData[] = [
   {
     image: "/activities/one.webp",
-    title: "Highlands",
-    subtitle: "Scotland",
-    description: "The mountains are calling",
+    title: "Conjecture",
+    subtitle: "NAB 401",
+    description: "Day 1 of Aarohan, 2025",
   },
   {
     image: "/activities/two.webp",
-    title: "Machu Pichu",
-    subtitle: "Peru",
-    description: "Adventure is never far away",
+    title: "Techmela",
+    subtitle: "The Lords",
+    description: "Project Shocase",
   },
   {
     image: "/activities/three.webp",
-    title: "Chamonix",
-    subtitle: "France",
-    description: "Let your dreams come true",
+    title: "Techmela",
+    subtitle: "Ribbon Cutting",
+    description: "Official inauguration of Techmela 2025",
   },
   {
     image: "/activities/four.webp",
-    title: "Santorini",
-    subtitle: "Greece",
-    description: "Where the sky meets the sea",
+    title: "Director",
+    subtitle: "Prof. Arvid Chobey",
+    description: "Welcome address by the director",
   },
   {
     image: "/activities/five.webp",
-    title: "Kyoto",
-    subtitle: "Japan",
-    description: "Ancient meets eternal",
+    title: "Team Juniors",
+    subtitle: "Together We",
+    description: "Unity and collaboration",
   },
 ];
 
@@ -226,7 +226,9 @@ export default function VoyageSlider() {
   // ── Render ────────────────────────────────────────────────
   return (
     <>
-      <h1 className="text-4xl md:text-6xl text-center mb-5 md:mt-20 md:-mb-10">Our Activities</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-5 md:mt-20 md:-mb-10">
+        Our Activities
+      </h1>
       <div className={styles.container} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className={styles.slider}>
           {/* Prev */}
